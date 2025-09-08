@@ -31,6 +31,19 @@ public class Longpress {
 
     	    driver.perform(Collections.singletonList(longPress));
     	}
+     //add tap method		
+     	
+     public static void tap(AndroidDriver driver, WebElement element) {
+		    int centerX = element.getLocation().getX() + (element.getSize().getWidth() / 2);
+		    int centerY = element.getLocation().getY() + (element.getSize().getHeight() / 2);
+
+		    Sequence tap = new Sequence(finger, 1);
+		    tap.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), centerX, centerY));
+		    tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+		    tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+		    driver.perform(Collections.singletonList(tap));
+ 	}
 
 		// TODO Auto-generated method stub
 		
